@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <body>
+        <div ng-app="myapp" ng-controller="mycontroller">
+              <p>My First service :: {{webURL}}</p>  
+              <p>{{welcomeMsg}}</p>
+              <p>Clock :: {{clock}}</p>
+              <p>Custom service :: {{result}}</p>
+        </div>
+    </body>
+    <script>
+        var myapp = angular.module('myapp',[]);
+        myapp.controller('mycontroller',function($scope,$location,$timeout,$interval,oddEven){
+            $scope.webURL = $location.absUrl();
+
+            $scope.welcomeMsg = "Hello !";
+            $timeout(function(){
+                $scope.welcomeMsg = "How are you ? This is my first timeout service. :)";
+            },2000);
+
+            $scope.clock = new Date().toLocaleTimeString();
+            $interval(function(){
+                $scope.clock = new Date().toLocaleTimeString();
+            },1000);
+
+            $scope.number = 7;
+            $scope.result = oddEven.isEven($scope.number);
+
+        });
+
+        myapp.service('oddEven', function(){
+
+            this.isEven = function(x){
+                if(x%2 == 0)
+                    return "Entered Number "+x+" is even.";
+                else{
+                    return "Entered number "+x+" is odd.";
+                }    
+            }
+
+        });
+
+    </script>
+</html>

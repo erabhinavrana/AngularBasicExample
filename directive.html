@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <body>
+        <div ng-app="myApp">
+            <my-custom-directive></my-custom-directive>
+            <p my-custom-attr-directive></p>
+        </div>
+    </body>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.directive('myCustomDirective', function(){
+            return{
+                template : "<p>My first custom angular directive!</p>"
+            };
+        });
+        myApp.directive('myCustomAttrDirective', function(){
+            return{
+                restrict:'A',
+                template : "<p>My first custom angular directive as attribute!</p>"
+            };
+        });
+    </script>
+</html>

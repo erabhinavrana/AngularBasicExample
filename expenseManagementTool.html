@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <body>
+        <h1>Expense Management Tool</h1>
+        <div ng-app="myApp" ng-controller="myController">
+            <table> 
+                <tr>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                </tr>
+                <tr ng-repeat="expense in expenseList">
+                    <td>{{expense.amount}}</td>
+                    <td>{{expense.date | date : 'dd-MMM-yyyy'}}</td>
+                    <td>{{expense.description}}</td>
+                </tr>
+            </table>
+
+            <form novalidate>
+                <label>Amount ::</label>
+                <input type="text" ng-model="obj.amount">
+                <label>Date ::</label>
+                <input type="date" ng-model="obj.date">
+                <label>Description ::</label>
+                <input type="text" ng-model="obj.description">
+                
+                <button ng-click="addExpense()">ADD</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        var myApp = angular.module('myApp',[]);
+
+        myApp.controller('myController', function($scope){
+            $scope.addExpense = expenseFnc;
+            $scope.expenseList = [];
+            var expenseObj = {
+                amount : 25,
+                date : new Date(),
+                description : 'Grocery'
+            };
+            $scope.expenseList.push(expenseObj);
+            $scope.obj = {};
+
+            function expenseFnc (){
+                if($scope.obj){
+                    expenseObj = $scope.obj;
+                    $scope.expenseList.push(expenseObj);
+                }
+            }
+        });
+    </script>
+</html>

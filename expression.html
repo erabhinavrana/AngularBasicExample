@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <body>
+        <div ng-app="" ng-init="numberOne=1; numberTwo=1">
+            <p> First Expressions ( 5*5 ) :: {{5*5 }}</p>
+            <input type="text" style="background-color : {{color}}" ng-model="color" value="{{color}}"></br>
+            
+            <p>Multiply two numbers :: </p>
+            <input type="text" ng-model="numberOne"> * <input type="text" ng-model="numberTwo"> = <span ng-bind="numberOne*numberTwo"></span>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <body>
+        <div ng-app="myapp" ng-controller="mycontroller">
+            
+             
+                <select ng-model="selectedValue" ng-options="x.Name for x in result | filter : value">
+                 <input type="text" ng-model="value">
+                </select>
+        </div>
+        
+    </body>
+
+    <script>    
+        var myapp = angular.module('myapp',[]);
+        myapp.controller('mycontroller',function($scope,$http){
+            $http.get('https://www.w3schools.com/angular/customers.php').then(function mySuccess(response){
+                    $scope.result = response.data.records;
+            },function myError(response){
+                    $scope.result = [];
+            })
+        });
+        myapp.directive('myAutoComplete', function($scope){
+            return{
+                restrict:'A',
+                template : "<p>My first custom angular directive as attribute!</p>"
+            };
+        });
+    </script>
+</html>

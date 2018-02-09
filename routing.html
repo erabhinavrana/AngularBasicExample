@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+    <body ng-app="myRouteApp">
+        <div>   
+            <p><a href="#/!">welcome</a></p>
+        </div>
+        
+        <div ng-view></div>
+    </body>
+
+    <script>
+        var myRouteApp = angular.module('myRouteApp',['ngRoute']);
+
+        myRouteApp.config(function($routeProvider){
+            $routeProvider.when('/',{
+                templateUrl : 'welcome.html'
+            })
+            .when('/login',{
+                templateUrl : 'login.html',
+                controller  : 'loginCtrl'
+            })
+            .when('/logout',{
+                templateUrl : 'logout.html',    
+                controller  : 'logoutCtrl'
+            });
+        });
+
+        myRouteApp.controller('loginCtrl', function($scope){
+            $scope.message = "Login Success !!";
+        });
+
+        myRouteApp.controller('logoutCtrl', function($scope){
+            $scope.message = "Logout Success !!";
+        });
+    </script>
+</html>

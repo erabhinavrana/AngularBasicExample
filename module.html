@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <body>
+        <div ng-app="myApp" ng-controller="myController">   
+            <p>{{welcomeText}}</p>
+            <p my-directive></p>
+        </div>
+    </body>
+    <script>
+        var myApp = angular.module('myApp',[]);
+
+        myApp.controller('myController', function($scope){
+            $scope.welcomeText = "My First Angular module example";
+        });
+
+        myApp.directive('myDirective',function(){
+            return{
+                template : "My First Angular custom directive"
+            }; 
+        });
+    </script>
+</html>
